@@ -2,7 +2,6 @@ package ru.meseen.dev.tinkofflab_0.ui.main
 
 import android.app.Application
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
@@ -38,8 +37,8 @@ class MainFragment : Fragment() {
     lateinit var application: Application
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var viewPager2: ViewPager2
-    private lateinit var next: MaterialButton
-    private lateinit var prev: MaterialButton
+    private lateinit var next: FloatingActionButton
+    private lateinit var prev: FloatingActionButton
 
 
     private val viewModel: MainViewModel by viewModels { MyViewModelFabric(this, application) }
@@ -52,21 +51,19 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
-    }
+    ): View = inflater.inflate(R.layout.main_fragment, container, false)
 
+    private fun initFields(view: View) {
+        viewPager2 = view.findViewById<ViewPager2>(R.id.viewPager2)
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshLayout)
+        next = view.findViewById(R.id.nextButton)
+        prev = view.findViewById(R.id.prevButton)
+    }
 
     @ExperimentalPagingApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val viewPager2 = view.findViewById<ViewPager2>(R.id.viewPager2)
+        initFields(view)
         val adapter = PageDevListAdapter(application = application)
-
-        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipeRefreshLayout)
-
-
-
-
 
         viewPager2.registerOnPageChangeCallback(pageListener)
 
@@ -89,12 +86,13 @@ class MainFragment : Fragment() {
 
         lifecycleScope.launchWhenCreated {
             adapter.loadStateFlow
-                // Only emit when REFRESH LoadState for RemoteMediator changes.
                 .distinctUntilChangedBy { it.refresh }
-                // Only react to cases where Remote REFRESH completes i.e., NotLoading.
                 .filter { it.refresh is LoadState.NotLoading }
                 .collect { viewPager2.postInvalidate() }
         }
+
+        next.setOnClickListener(nextListener)
+        prev.setOnClickListener(previousListener)
     }
 
 
@@ -105,12 +103,10 @@ class MainFragment : Fragment() {
             positionOffset: Float,
             positionOffsetPixels: Int
         ) {
-
         }
 
         override fun onPageSelected(position: Int) {
-            Log.d("TAG", "onPageSelected: $position ")
-
+            hidePrev(position)
         }
 
         override fun onPageScrollStateChanged(state: Int) {
@@ -121,6 +117,7 @@ class MainFragment : Fragment() {
     private val nextListener = View.OnClickListener {
         changePosition(Step.NEXT)
     }
+
     private val previousListener = View.OnClickListener {
         changePosition(Step.PREVIOUS)
     }
@@ -130,9 +127,20 @@ class MainFragment : Fragment() {
         if (step == Step.NEXT) {
             viewPager2.currentItem = curItem + 1
         } else {
+
             viewPager2.currentItem = if ((curItem - 1) < 1) 0 else curItem - 1
         }
     }
+
+    private fun hidePrev(curItem: Int) {
+        if (curItem <= 0) {
+            prev.hide()
+        } else {
+            prev.show()
+        }
+
+    }
+
 
     enum class Step {
         NEXT, PREVIOUS

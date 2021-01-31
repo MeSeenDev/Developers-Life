@@ -13,10 +13,12 @@
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_anchor="@+id/prevButton"
+        app:layout_anchorGravity="top|center"
         app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.viewpager2.widget.ViewPager2
@@ -29,21 +31,27 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-<!--
-<com.google.android.material.button.MaterialButton
 
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="end|bottom"
-    android:text="next"/>
-    <com.google.android.material.button.MaterialButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="start|bottom"
-    android:text="prev"/>
--->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/colorDarkGrey"
+        android:src="@drawable/ic_arrow_next"
+        app:fabSize="mini" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/prevButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|bottom"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/colorDarkGrey"
 
+        android:src="@drawable/ic_arrow_prev"
+        app:fabSize="mini" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
