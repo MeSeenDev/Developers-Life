@@ -13,21 +13,20 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import ru.meseen.dev.tinkofflab_0.App
 import ru.meseen.dev.tinkofflab_0.model.api.ConnectionLiveData
-import ru.meseen.dev.tinkofflab_0.model.api.DevApi
 import ru.meseen.dev.tinkofflab_0.model.api.query.DevLiveQuery
 
 class MainViewModel(
-    private val application: Application,
+    application: Application,
     private val handle: SavedStateHandle,
 ) : ViewModel() {
+
     private val repository = (application as App).latestRepository
 
-
-
+    val networkStatus = ConnectionLiveData(application.applicationContext)
 
     companion object {
-        const val KEY_POSTS = "posts"
-        const val TYPE_QUERY = "gif"
+        const val KEY_POSTS = "KEY_POSTS"
+        const val TYPE_QUERY = "latest"
     }
 
     init {
@@ -47,10 +46,10 @@ class MainViewModel(
             .flatMapLatest {
                 repository.loadData(
                     DevLiveQuery(
-                        DevApi.SectionType.LATEST,
+                        it,
                         0,
                         5,
-                        typesQuery = it
+                        "gif"
                     )
                 )
             }
@@ -59,6 +58,18 @@ class MainViewModel(
             .cachedIn(viewModelScope)
     ).flattenMerge(2)
 
+
+    private fun shouldShowPosts(
+        sector: String
+    ) = handle.get<String>(KEY_POSTS) != sector
+
+    fun showPosts(section: String) {
+        if (!shouldShowPosts(section)) return
+
+        clearListCh.offer(Unit)
+
+        handle.set(KEY_POSTS, section)
+    }
 }
 
 

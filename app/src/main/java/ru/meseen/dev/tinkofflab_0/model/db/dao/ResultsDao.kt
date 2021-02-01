@@ -15,9 +15,6 @@ interface ResultsDao {
     @Query("SELECT * FROM DATA_TABLE_NAME WHERE section LIKE :section")
     fun pagingSource(section: String): PagingSource<Int, ResultEntity>
 
-    @Query("DELETE FROM DATA_TABLE_NAME")
-    suspend fun clearAll()
-
     @Query("DELETE FROM DATA_TABLE_NAME WHERE section = :section")
     suspend fun deleteByListType(section: String)
 }

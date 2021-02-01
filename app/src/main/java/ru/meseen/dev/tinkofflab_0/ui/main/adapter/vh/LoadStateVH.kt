@@ -15,6 +15,7 @@ class LoadStateVH(itemView: View, private val retryCallback: () -> Unit) :
 
     private val progressBar: ProgressBar = itemView.findViewById(R.id.progressBar)
     private val errorDescription: MaterialTextView = itemView.findViewById(R.id.errorTextView)
+    @Suppress("unused")
     private val retryBtn: MaterialButton = itemView.findViewById<MaterialButton>(R.id.retryBtn)
         .also {
             it.setOnClickListener { retryCallback() }
