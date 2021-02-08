@@ -11,7 +11,7 @@ import ru.meseen.dev.tinkofflab_0.model.data.DevLifeRemoteMediator
 import ru.meseen.dev.tinkofflab_0.model.db.DevLifeDataBase
 import ru.meseen.dev.tinkofflab_0.model.db.entity.ResultEntity
 
-class LatestRepository(private val dataBase: DevLifeDataBase) : DevLifeRepository {
+class MainRepository(private val dataBase: DevLifeDataBase) : DevLifeRepository {
 
 
     @ExperimentalPagingApi

@@ -38,7 +38,7 @@ object DevApi {
             .addConverterFactory(converter)
             .build()
 
-    val service = retrofit.create(DevLifeService::class.java)
+    val service: DevLifeService = retrofit.create(DevLifeService::class.java)
 
 
     private class JsonInterceptor : Interceptor {

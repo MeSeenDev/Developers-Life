@@ -1,18 +1,12 @@
 package ru.meseen.dev.tinkofflab_0.ui.main.adapter.vh
 
 import android.app.Application
-import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.gif.GifDrawable
-import com.bumptech.glide.request.target.CustomViewTarget
-import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.textview.MaterialTextView
 import ru.meseen.dev.tinkofflab_0.R
 import ru.meseen.dev.tinkofflab_0.model.db.entity.ResultEntity
