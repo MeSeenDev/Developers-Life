@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id "org.jetbrains.kotlin.plugin.serialization"
+    id "dagger.hilt.android.plugin"
 }
 
 android {
@@ -10,21 +11,49 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "ru.meseen.dev.tinkofflab_0"
+        applicationId "ru.meseen.dev.developers_life"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField('String','DATA_BASE_NAME','"DEV_LIFE.db"')
+
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField('String', 'BASE_URL', '"https://developerslife.ru/"')
+            resValue "string", "app_name", "${applicationName} Debug"
+            versionNameSuffix ' Debug'
+            applicationIdSuffix ".debug"
+            manifestPlaceholders = [
+                    appIcon     : "@mipmap/ic_launcher_debug",
+                    appIconRound: "@mipmap/ic_launcher_debug_round"
+            ]
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            resValue "string", "app_name", applicationName
+            buildConfigField('String', 'BASE_URL', '"https://developerslife.ru/"')
+            manifestPlaceholders = [
+                    appIcon     : "@mipmap/ic_launcher",
+                    appIconRound: "@mipmap/ic_launcher_round"
+            ]
         }
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -49,12 +78,16 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationJson"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
 
+    //Hilt
+    implementation "com.google.dagger:hilt-android:$rootProject.hilt"
+    kapt "com.google.dagger:hilt-compiler:$rootProject.hilt"
 
     // Room Компоненты
-    kapt "androidx.room:room-compiler:2.3.0-beta01"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
-    implementation "androidx.room:room-runtime:2.3.0-beta01"
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
     // Lifecycle Компоненты
@@ -69,7 +102,7 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation "com.google.android.material:material:$rootProject.materialVersion"
     implementation "androidx.viewpager2:viewpager2:1.0.0"
-    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-alpha13'
+    implementation "androidx.paging:paging-runtime-ktx:$rootProject.paging_version"
     implementation "androidx.activity:activity-ktx:$rootProject.activityVersion"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
@@ -79,5 +112,5 @@ dependencies {
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "androidx.test.ext:$rootProject.androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.meseen.dev.tinkofflab_0">
+    package="ru.meseen.dev.developers_life">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".App"
+        android:name="ru.meseen.dev.developers_life.di.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/developers_life"
@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TinkoffLab_0"
         android:fullBackupContent="@xml/backup_descriptor">
-        <activity android:name=".MainActivity">
+        <activity android:name="ru.meseen.dev.developers_life.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

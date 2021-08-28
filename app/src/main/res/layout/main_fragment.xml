@@ -2,11 +2,11 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorDark"
     tools:context=".ui.main.MainFragment"
-    android:id="@+id/mainParent"
     tools:ignore="Overdraw">
 
 
@@ -26,18 +26,51 @@
             android:layout_height="match_parent"
             android:fillViewport="true">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPager2"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="?attr/actionBarSize"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="wrap_content">
+
+                <FrameLayout
+                    android:id="@+id/errorContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:elevation="16dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/errorTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/colorDark"
+                        android:drawableTop="@drawable/ic_baseline_feedback_24"
+                        android:gravity="center"
+                        android:text="@string/feed_is_empty"
+                        android:textColor="@color/cardview_light_background"
+                        android:textSize="26sp" />
+                </FrameLayout>
 
 
-            </androidx.viewpager2.widget.ViewPager2>
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:reverseLayout="false"
+                    android:layout_marginBottom="?attr/actionBarSize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </androidx.viewpager2.widget.ViewPager2>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </androidx.core.widget.NestedScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -51,9 +84,9 @@
         android:backgroundTint="@color/colorDarkGrey"
         android:contentDescription="@string/next_card"
         android:src="@drawable/ic_arrow_next"
+        app:fabSize="mini"
         app:layout_anchor="@id/bottomNavigationView"
-        app:layout_anchorGravity="end"
-        app:fabSize="mini" />
+        app:layout_anchorGravity="end" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/prevButton"
@@ -64,9 +97,10 @@
         android:backgroundTint="@color/colorDarkGrey"
         android:contentDescription="@string/previous_card"
         android:src="@drawable/ic_arrow_prev"
+        android:visibility="gone"
+        app:fabSize="mini"
         app:layout_anchor="@id/bottomNavigationView"
-        app:layout_anchorGravity="start"
-        app:fabSize="mini" />
+        app:layout_anchorGravity="start" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
