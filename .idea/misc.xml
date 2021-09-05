@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/drawable/ic_baseline_feedback_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/drawable/ic_net_error.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/layout/main_activity.xml" value="0.209375" />
+        <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/layout/main_fragment.xml" value="0.209375" />
+        <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/layout/main_item.xml" value="0.209375" />
+        <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/layout/no_data.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/ic_place_holder.xml" value="0.30277777777777776" />
+        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/main_item.xml" value="0.25" />
+      </map>
+    </option>
   </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

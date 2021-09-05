@@ -14,3 +14,4 @@
 .cxx
 local.properties
 /app/src/main/java/ru/meseen/dev/tinkofflab_0/model/api/ConnectionLiveData.kt
+/.idea/.name

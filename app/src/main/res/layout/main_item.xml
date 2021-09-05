@@ -7,7 +7,6 @@
     tools:background="@color/colorDark">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/itemCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -25,10 +24,26 @@
                 android:id="@+id/postImageView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/meme_gif"
                 android:maxHeight="400dp"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/ic_place_holder" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/meme_gif"
+                android:indeterminate="true"
+                android:progressBackgroundTint="@color/colorLightGrey"
+                app:layout_constraintBottom_toBottomOf="@+id/postImageView"
+                app:layout_constraintEnd_toEndOf="@+id/postImageView"
+                app:layout_constraintStart_toStartOf="@+id/postImageView"
+                app:layout_constraintTop_toTopOf="@+id/postImageView"
                 tools:srcCompat="@drawable/ic_place_holder" />
 
 

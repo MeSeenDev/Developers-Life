@@ -1,10 +1,14 @@
 <resources>
-    <string name="app_name">tinkoffLab_0</string>
     <string name="latest">Latest</string>
     <string name="hot">Hot</string>
     <string name="top">Top</string>
     <string name="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae cumque cupiditate deserunt dolore dolorem doloribus est fuga impedit magni, natus, neque nihil quasi quidem repellendus rerum suscipit veritatis vitae.</string>
     <string name="retry">Retry</string>
+    <string name="developers_life">Developers Life</string>
+    <string name="previous_card">Previous Card</string>
+    <string name="next_card">Next Card</string>
+    <string name="meme_gif">Meme Gif</string>
+    <string name="feed_is_empty">Feed is Empty</string>
 
 
 </resources>
