@@ -11,13 +11,16 @@ import ru.meseen.dev.developers_life.data.db.DevLifeDataBase
 import ru.meseen.dev.developers_life.ui.main.mapper.FeedMapper
 import javax.inject.Inject
 
+/**
+ * @author Doroshenko Vyacheslav
+ */
 class MainRepository @Inject constructor(
     private val dataBase: DevLifeDataBase,
     private val service: DevLifeService,
     private val mapper: FeedMapper,
 ) : DevLifeRepository {
 
-    @ExperimentalPagingApi
+    @OptIn(ExperimentalPagingApi::class)
     override fun loadData(
         query: DevLiveQuery,
     ) = Pager(

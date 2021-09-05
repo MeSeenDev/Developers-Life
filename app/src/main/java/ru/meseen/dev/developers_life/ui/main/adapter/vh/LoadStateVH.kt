@@ -1,6 +1,5 @@
 package ru.meseen.dev.developers_life.ui.main.adapter.vh
 
-import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
@@ -10,6 +9,9 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import ru.meseen.dev.developers_life.R
 
+/**
+ * @author Doroshenko Vyacheslav
+ */
 class LoadStateVH(itemView: View, private val retryCallback: () -> Unit) :
     RecyclerView.ViewHolder(itemView) {
 
@@ -24,10 +26,7 @@ class LoadStateVH(itemView: View, private val retryCallback: () -> Unit) :
 
 
     fun bind(loadState: LoadState) {
-        Log.d("TAG", "LoadState: ${(loadState as? LoadState.Error)?.error}")
-
         progressBar.isVisible = loadState is LoadState.Loading
-        ///retryBtn.isVisible = loadState is Error
         errorDescription.isVisible =
             !(loadState as? LoadState.Error)?.error?.message.isNullOrBlank()
         errorDescription.text = (loadState as? LoadState.Error)?.error?.message

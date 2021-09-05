@@ -16,6 +16,9 @@ import android.os.Build
 import androidx.lifecycle.LiveData
 import javax.inject.Inject
 
+/**
+ * @author Doroshenko Vyacheslav
+ */
 class ConnectionObserver @Inject constructor(
     private val context: Context
 ) : LiveData<Boolean>() {

@@ -5,6 +5,9 @@ import kotlinx.coroutines.flow.Flow
 import ru.meseen.dev.developers_life.data.api.query.DevLiveQuery
 import ru.meseen.dev.developers_life.model.FeedModel
 
+/**
+ * @author Doroshenko Vyacheslav
+ */
 interface DevLifeRepository {
     fun loadData(
         query: DevLiveQuery

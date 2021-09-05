@@ -3,8 +3,12 @@ package ru.meseen.dev.developers_life.data.api
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import ru.meseen.dev.developers_life.data.api.pojos.DevLifeResponse
+import ru.meseen.dev.developers_life.data.api.pojos.BaseResponse
+import ru.meseen.dev.developers_life.data.api.pojos.FeedItem
 
+/**
+ * @author Doroshenko Vyacheslav
+ */
 interface DevLifeService {
 
 
@@ -23,5 +27,5 @@ interface DevLifeService {
         @Path("page") page: Int = 0,
         @Query("pageSize") pageSize: Int = 5,
         @Query("types") types: String = "gif"
-    ): DevLifeResponse
+    ): BaseResponse<FeedItem>
 }

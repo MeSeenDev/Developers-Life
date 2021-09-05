@@ -2,13 +2,18 @@ package ru.meseen.dev.developers_life.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.meseen.dev.developers_life.R
+import ru.meseen.dev.developers_life.databinding.MainItemBinding
 import ru.meseen.dev.developers_life.model.FeedModel
 import ru.meseen.dev.developers_life.ui.main.adapter.vh.DevLifeVH
 
+/**
+ * @author Doroshenko Vyacheslav
+ */
 class PageDevListAdapter :
     PagingDataAdapter<FeedModel, RecyclerView.ViewHolder>(DEV_LIFE_COMPARE) {
 
@@ -28,13 +33,15 @@ class PageDevListAdapter :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.main_item, parent, false)
-        return DevLifeVH(view)
+        val binding = MainItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DevLifeVH(binding)
     }
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is DevLifeVH) {
+            holder.itemView.animation =
+                AnimationUtils.loadAnimation(holder.itemView.context, R.anim.recycle_alpha)
             val item = getItem(position)
             holder.bind(item)
         }

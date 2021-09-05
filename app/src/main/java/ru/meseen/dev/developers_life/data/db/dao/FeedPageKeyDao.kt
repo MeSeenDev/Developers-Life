@@ -6,7 +6,9 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import ru.meseen.dev.developers_life.data.db.entity.PageKeyEntity
 
-
+/**
+ * @author Doroshenko Vyacheslav
+ */
 @Dao
 interface FeedPageKeyDao {
 

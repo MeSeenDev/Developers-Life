@@ -7,6 +7,9 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import ru.meseen.dev.developers_life.data.db.entity.FeedEntity
 
+/**
+ * @author Doroshenko Vyacheslav
+ */
 @Dao
 interface FeedDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

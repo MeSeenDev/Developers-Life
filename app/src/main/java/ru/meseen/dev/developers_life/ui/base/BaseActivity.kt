@@ -9,9 +9,5 @@ import kotlinx.coroutines.job
  * @author Vyacheslav Doroshenko
  */
 open class BaseActivity : AppCompatActivity() {
-    private val coroutineExceptionHandler =
-        CoroutineExceptionHandler { coroutineContext, throwable ->
-            Log.wtf("ERROR", " ${coroutineContext.job.isCancelled} : ${throwable.localizedMessage}")
-        }
 
 }

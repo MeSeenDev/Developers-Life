@@ -7,6 +7,9 @@ import ru.meseen.dev.developers_life.data.db.dao.FeedPageKeyDao
 import ru.meseen.dev.developers_life.data.db.entity.FeedEntity
 import ru.meseen.dev.developers_life.data.db.entity.PageKeyEntity
 
+/**
+ * @author Doroshenko Vyacheslav
+ */
 @Database(
     entities = [PageKeyEntity::class, FeedEntity::class],
     version = 1,

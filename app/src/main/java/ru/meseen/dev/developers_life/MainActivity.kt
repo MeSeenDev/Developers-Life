@@ -7,6 +7,9 @@ import ru.meseen.dev.developers_life.databinding.MainActivityBinding
 import ru.meseen.dev.developers_life.ui.base.BaseActivity
 import ru.meseen.dev.developers_life.ui.main.MainFragment
 
+/**
+ * @author Doroshenko Vyacheslav
+ */
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
 

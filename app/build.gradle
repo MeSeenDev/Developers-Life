@@ -29,7 +29,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             buildConfigField('String', 'BASE_URL', '"https://developerslife.ru/"')
-            resValue "string", "app_name", "${applicationName} Debug"
             versionNameSuffix ' Debug'
             applicationIdSuffix ".debug"
             manifestPlaceholders = [
@@ -41,7 +40,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            resValue "string", "app_name", applicationName
             buildConfigField('String', 'BASE_URL', '"https://developerslife.ru/"')
             manifestPlaceholders = [
                     appIcon     : "@mipmap/ic_launcher",
@@ -55,8 +53,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -73,7 +71,7 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glide_version"
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
     implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
 
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationJson"

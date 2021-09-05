@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.ui.main.adapter.vh.LoadStateVH
 
+/**
+ * @author Doroshenko Vyacheslav
+ */
 class FooterLoadStateAdapter(private val adapter: PageDevListAdapter) :
     LoadStateAdapter<RecyclerView.ViewHolder>() {
 

@@ -3,16 +3,9 @@ package ru.meseen.dev.developers_life.data.api.pojos
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
-data class DevLifeResponse(
-
-    @SerialName("result")
-    val feed: List<FeedItem> = listOf(),
-
-    @SerialName("totalCount")
-    val totalCount: Int = 0
-)
-
+/**
+ * @author Doroshenko Vyacheslav
+ */
 @Serializable
 data class FeedItem(
 

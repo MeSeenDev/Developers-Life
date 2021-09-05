@@ -4,16 +4,18 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.room.withTransaction
-import retrofit2.HttpException
 import ru.meseen.dev.developers_life.data.api.DevLifeService
 import ru.meseen.dev.developers_life.data.api.query.DevLiveQuery
 import ru.meseen.dev.developers_life.data.db.DevLifeDataBase
 import ru.meseen.dev.developers_life.data.db.entity.FeedEntity
 import ru.meseen.dev.developers_life.data.db.entity.PageKeyEntity
+import ru.meseen.dev.developers_life.exceptions.EmptyFeedException
 import ru.meseen.dev.developers_life.ui.base.BaseRemoteMediator
 import ru.meseen.dev.developers_life.ui.main.mapper.FeedMapper
-import java.io.IOException
 
+/**
+ * @author Doroshenko Vyacheslav
+ */
 @ExperimentalPagingApi
 class DevLifeRemoteMediator(
     private val query: DevLiveQuery,
@@ -55,6 +57,7 @@ class DevLifeRemoteMediator(
             }
 
             val resultsItem = service.loadData(section = query.feedSection, page = page)
+            if (resultsItem.totalCount < 1) throw EmptyFeedException("Feed is Empty")
             val resultEntitys = resultsItem.feed.map {
                 mapper.fromResponseToEntity(it, query.feedSection)
             }
@@ -84,9 +87,7 @@ class DevLifeRemoteMediator(
                 pageKeyDao.insertAll(keys = keys)
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
-        } catch (e: IOException) {
-            return MediatorResult.Error(e)
-        } catch (e: HttpException) {
+        } catch (e: Throwable) {
             return MediatorResult.Error(e)
         }
     }
