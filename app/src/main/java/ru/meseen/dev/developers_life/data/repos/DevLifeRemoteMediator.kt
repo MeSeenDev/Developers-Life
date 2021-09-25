@@ -83,8 +83,8 @@ class DevLifeRemoteMediator(
                     )
                 }
 
-                resultsDao.insertAll(resultEntitys)
-                pageKeyDao.insertAll(keys = keys)
+                resultsDao.insert(resultEntitys)
+                pageKeyDao.insert(keys)
             }
             return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: Throwable) {

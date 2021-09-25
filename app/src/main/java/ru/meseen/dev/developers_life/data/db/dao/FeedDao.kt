@@ -11,13 +11,11 @@ import ru.meseen.dev.developers_life.data.db.entity.FeedEntity
  * @author Doroshenko Vyacheslav
  */
 @Dao
-interface FeedDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(posts: List<FeedEntity>)
+interface FeedDao : BaseDao<FeedEntity> {
 
-    @Query("SELECT * FROM DATA_TABLE_NAME WHERE section LIKE :section")
+    @Query("SELECT * FROM DATA_TABLE WHERE section LIKE :section")
     fun pagingSource(section: String): PagingSource<Int, FeedEntity>
 
-    @Query("DELETE FROM DATA_TABLE_NAME WHERE section = :section")
+    @Query("DELETE FROM DATA_TABLE WHERE section = :section")
     suspend fun deleteByListType(section: String)
 }

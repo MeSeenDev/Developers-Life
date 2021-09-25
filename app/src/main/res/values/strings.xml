@@ -9,6 +9,7 @@
     <string name="next_card">Next Card</string>
     <string name="meme_gif">Meme Gif</string>
     <string name="feed_is_empty">Feed is Empty</string>
+    <string name="favorite">Favorite</string>
 
 
 </resources>

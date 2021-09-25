@@ -3,12 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.15885416666666666" />
         <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/drawable/ic_baseline_feedback_24.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/drawable/ic_net_error.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/layout/main_activity.xml" value="0.209375" />
         <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/layout/main_fragment.xml" value="0.209375" />
         <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/layout/main_item.xml" value="0.209375" />
         <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/layout/no_data.xml" value="0.209375" />
+        <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/menu/main_menu.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_place_holder.xml" value="0.30277777777777776" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.16" />
         <entry key="app/src/main/res/layout/main_item.xml" value="0.25" />

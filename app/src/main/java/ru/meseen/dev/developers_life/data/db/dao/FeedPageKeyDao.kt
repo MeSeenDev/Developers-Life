@@ -5,20 +5,18 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import ru.meseen.dev.developers_life.data.db.entity.PageKeyEntity
+import ru.meseen.dev.developers_life.ui.base.BaseEntity
 
 /**
  * @author Doroshenko Vyacheslav
  */
 @Dao
-interface FeedPageKeyDao {
+interface FeedPageKeyDao : BaseDao<PageKeyEntity>{
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(keys: List<PageKeyEntity>)
-
-    @Query("SELECT * FROM PAGE_TABLE_NAME WHERE _id = :id")
+    @Query("SELECT * FROM PAGE_TABLE WHERE _id = :id")
     suspend fun remoteKeyById(id: Long): PageKeyEntity
 
-    @Query("DELETE FROM PAGE_TABLE_NAME WHERE section = :section")
+    @Query("DELETE FROM PAGE_TABLE WHERE section = :section")
     suspend fun deleteByListType(section: String)
 
 }
