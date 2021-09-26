@@ -104,6 +104,11 @@ dependencies {
     implementation "androidx.activity:activity-ktx:$rootProject.activityVersion"
     implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.hilt:hilt-navigation-fragment:1.0.0"
+
 
     implementation "androidx.core:core-ktx:$rootProject.coreTestingVersion"
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"

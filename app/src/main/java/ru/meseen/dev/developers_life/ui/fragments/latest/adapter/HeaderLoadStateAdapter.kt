@@ -1,4 +1,4 @@
-package ru.meseen.dev.developers_life.ui.main.adapter
+package ru.meseen.dev.developers_life.ui.fragments.latest.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,12 +6,12 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.meseen.dev.developers_life.R
-import ru.meseen.dev.developers_life.ui.main.adapter.vh.LoadStateVH
+import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.LoadStateVH
 
 /**
  * @author Doroshenko Vyacheslav
  */
-class FooterLoadStateAdapter(private val adapter: PageDevListAdapter) :
+class HeaderLoadStateAdapter(private val adapter: PageDevListAdapter) :
     LoadStateAdapter<RecyclerView.ViewHolder>() {
 
 
@@ -26,12 +26,12 @@ class FooterLoadStateAdapter(private val adapter: PageDevListAdapter) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, loadState: LoadState) {
         if (holder is LoadStateVH) {
             holder.bind(loadState)
+
         }
     }
 
     override fun displayLoadStateAsItem(loadState: LoadState): Boolean {
         return loadState is LoadState.Loading || loadState is LoadState.Error
     }
+
 }
-
-

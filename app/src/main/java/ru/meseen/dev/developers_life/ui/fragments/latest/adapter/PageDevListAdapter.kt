@@ -1,4 +1,4 @@
-package ru.meseen.dev.developers_life.ui.main.adapter
+package ru.meseen.dev.developers_life.ui.fragments.latest.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.databinding.MainItemBinding
 import ru.meseen.dev.developers_life.model.FeedModel
-import ru.meseen.dev.developers_life.ui.main.adapter.vh.DevLifeVH
+import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.DevLifeVH
 
 /**
  * @author Doroshenko Vyacheslav

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/latestFragment">
+
+
+    <fragment
+        android:id="@+id/latestFragment"
+        android:name="ru.meseen.dev.developers_life.ui.fragments.latest.LatestFragment"
+        android:label="RandomFragment" />
+    <fragment
+        android:id="@+id/randomFragment"
+        android:name="ru.meseen.dev.developers_life.ui.fragments.random.RandomFragment"
+        android:label="RandomFragment" />
+    <fragment
+        android:id="@+id/topFragment"
+        android:name="ru.meseen.dev.developers_life.ui.fragments.top.TopFragment"
+        android:label="TopFragment" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="ru.meseen.dev.developers_life.ui.fragments.favorites.viewmodel.FavoritesFragment"
+        android:label="FavoritesFragment" />
+</navigation>

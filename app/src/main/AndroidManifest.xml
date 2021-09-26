@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TinkoffLab_0"
         android:fullBackupContent="@xml/backup_descriptor">
-        <activity android:name="ru.meseen.dev.developers_life.MainActivity"
+        <activity android:name="ru.meseen.dev.developers_life.ui.activities.MainActivity"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -12,8 +12,15 @@
         <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/layout/no_data.xml" value="0.209375" />
         <entry key="..\:/Users/MeSeenAir/AndroidStudioProjects/home/Developers-LIfe/app/src/main/res/menu/main_menu.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_place_holder.xml" value="0.30277777777777776" />
-        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/main_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/favorite_fragment.xml" value="0.28396739130434784" />
+        <entry key="app/src/main/res/layout/latest_fragment.xml" value="0.28396739130434784" />
+        <entry key="app/src/main/res/layout/main_activity.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/main_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/no_data.xml" value="0.28396739130434784" />
+        <entry key="app/src/main/res/layout/random_fragment.xml" value="0.28396739130434784" />
+        <entry key="app/src/main/res/layout/top_fragment.xml" value="0.28396739130434784" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.4036458333333333" />
       </map>
     </option>
   </component>

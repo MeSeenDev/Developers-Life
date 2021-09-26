@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/latest"
+        android:id="@+id/latestFragment"
         android:enabled="true"
         android:icon="@drawable/ic_latest_24"
         android:title="@string/latest" />
     <item
-        android:id="@+id/hot"
+        android:id="@+id/randomFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_hot_24"
-        android:title="@string/hot" />
+        android:icon="@drawable/ic_round_random_24"
+        android:title="@string/random" />
     <item
-        android:id="@+id/top"
+        android:id="@+id/topFragment"
         android:enabled="true"
         android:icon="@drawable/ic_top_24"
         android:title="@string/top" />

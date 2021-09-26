@@ -1,4 +1,4 @@
-package ru.meseen.dev.developers_life.ui.main.viewmodels
+package ru.meseen.dev.developers_life.ui.fragments.latest.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -26,7 +26,7 @@ import javax.inject.Inject
  * @author Doroshenko Vyacheslav
  */
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class LatestViewModel @Inject constructor(
     private val handle: SavedStateHandle,
     private val repository: DevLifeRepository,
     val networkStatus: ConnectionObserver

@@ -1,4 +1,4 @@
-package ru.meseen.dev.developers_life.ui.main.adapter.vh
+package ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh
 
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView

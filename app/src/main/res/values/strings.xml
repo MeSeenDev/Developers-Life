@@ -1,6 +1,7 @@
 <resources>
     <string name="latest">Latest</string>
     <string name="hot">Hot</string>
+    <string name="random">Random</string>
     <string name="top">Top</string>
     <string name="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi beatae cumque cupiditate deserunt dolore dolorem doloribus est fuga impedit magni, natus, neque nihil quasi quidem repellendus rerum suscipit veritatis vitae.</string>
     <string name="retry">Retry</string>

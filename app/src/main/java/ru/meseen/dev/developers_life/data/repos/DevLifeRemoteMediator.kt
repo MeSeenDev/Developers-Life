@@ -11,7 +11,7 @@ import ru.meseen.dev.developers_life.data.db.entity.FeedEntity
 import ru.meseen.dev.developers_life.data.db.entity.PageKeyEntity
 import ru.meseen.dev.developers_life.exceptions.EmptyFeedException
 import ru.meseen.dev.developers_life.ui.base.BaseRemoteMediator
-import ru.meseen.dev.developers_life.ui.main.mapper.FeedMapper
+import ru.meseen.dev.developers_life.ui.fragments.latest.mapper.FeedMapper
 
 /**
  * @author Doroshenko Vyacheslav

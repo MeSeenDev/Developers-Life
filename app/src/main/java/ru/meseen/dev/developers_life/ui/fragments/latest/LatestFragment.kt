@@ -1,4 +1,4 @@
-package ru.meseen.dev.developers_life.ui.main
+package ru.meseen.dev.developers_life.ui.fragments.latest
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,51 +10,42 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import ru.meseen.dev.developers_life.R
-import ru.meseen.dev.developers_life.data.api.SectionType
+import ru.meseen.dev.developers_life.databinding.LatestFragmentBinding
 import ru.meseen.dev.developers_life.databinding.MainFragmentBinding
 import ru.meseen.dev.developers_life.ui.base.BaseFragment
-import ru.meseen.dev.developers_life.ui.main.adapter.FooterLoadStateAdapter
-import ru.meseen.dev.developers_life.ui.main.adapter.HeaderLoadStateAdapter
-import ru.meseen.dev.developers_life.ui.main.adapter.PageDevListAdapter
-import ru.meseen.dev.developers_life.ui.main.viewmodels.MainViewModel
+import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.FooterLoadStateAdapter
+import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.HeaderLoadStateAdapter
+import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.PageDevListAdapter
+import ru.meseen.dev.developers_life.ui.fragments.latest.viewmodel.LatestViewModel
 
 /**
  * @author Doroshenko Vyacheslav
  */
 @AndroidEntryPoint
-class MainFragment : BaseFragment() {
-
-    companion object {
-        fun newInstance(): MainFragment {
-            return MainFragment()
-        }
-    }
+class LatestFragment : BaseFragment() {
 
     private val adapter = PageDevListAdapter()
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: LatestViewModel by viewModels()
 
-    private var _vb: MainFragmentBinding? = null
+    private var _vb: LatestFragmentBinding? = null
 
-    private val vb: MainFragmentBinding by lazy { _vb!! }
+    private val vb: LatestFragmentBinding by lazy { _vb!! }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _vb = MainFragmentBinding.inflate(LayoutInflater.from(requireContext()))
+        _vb = LatestFragmentBinding.inflate(LayoutInflater.from(requireContext()))
         return vb.root
     }
 
     @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val bottomNavigationView =
-            view.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        bottomNavigationView.setOnItemSelectedListener(bottomNavigationListener)
+        /*  val bottomNavigationView =
+              view.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+          bottomNavigationView.setOnItemSelectedListener(bottomNavigationListener)*/
 
         adapterConfig()
 
@@ -68,9 +59,6 @@ class MainFragment : BaseFragment() {
             })
         }
         vb.viewPager2.registerOnPageChangeCallback(pageListener)
-        vb.nextButton.setOnClickListener(nextListener)
-        vb.prevButton.setOnClickListener(previousListener)
-
     }
 
     private fun showBanner(message: String) {
@@ -105,7 +93,6 @@ class MainFragment : BaseFragment() {
 
                 vb.swipeRefreshLayout.isRefreshing = refreshState is LoadState.Loading
                 (refreshState is LoadState.Error).let { isError ->
-                    vb.nextButton.isVisible = !isError
                     if (isError) {
                         showBanner((refreshState as LoadState.Error).error.message ?: "Empty List")
                     } else {
@@ -116,24 +103,6 @@ class MainFragment : BaseFragment() {
         }
     }
 
-    private val bottomNavigationListener =
-        NavigationBarView.OnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.latest -> {
-                    viewModel.showPosts(SectionType.LATEST)
-                    true
-                }
-                R.id.top -> {
-                    viewModel.showPosts(SectionType.TOP)
-                    true
-                }
-                R.id.hot -> {
-                    viewModel.showPosts(SectionType.HOT)
-                    true
-                }
-                else -> false
-            }
-        }
 
     private val pageListener = object : ViewPager2.OnPageChangeCallback() {
 
@@ -142,11 +111,11 @@ class MainFragment : BaseFragment() {
             positionOffset: Float,
             positionOffsetPixels: Int
         ) {
-          hidePrev(position)
+
         }
 
         override fun onPageSelected(position: Int) {
-            hidePrev(position)
+
         }
 
         override fun onPageScrollStateChanged(state: Int) {
@@ -171,14 +140,6 @@ class MainFragment : BaseFragment() {
         }
     }
 
-    private fun hidePrev(curItem: Int) {
-        if (curItem <= 0) {
-            vb.prevButton.hide()
-        } else {
-            vb.prevButton.show()
-        }
-
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
