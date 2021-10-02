@@ -1,4 +1,4 @@
-package ru.meseen.dev.developers_life.ui.fragments.latest.viewmodel
+package ru.meseen.dev.developers_life.ui.fragments.latest
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -33,9 +33,9 @@ class LatestViewModel @Inject constructor(
 ) : ViewModel() {
 
     companion object {
-        const val KEY_POSTS = "KEY_POSTS"
-        const val TYPE_QUERY = "latest"
-        const val CLEAR_FIST = "CLEAR_FIST"
+       private const val KEY_POSTS = "KEY_POSTS"
+       private const val TYPE_QUERY = "latest"
+       private const val CLEAR_FIST = "CLEAR_FIST"
     }
 
     init {
@@ -57,20 +57,4 @@ class LatestViewModel @Inject constructor(
             }
         }
         .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
-
-
-    private fun shouldShowPosts(
-        sector: String
-    ) = handle.get<String>(KEY_POSTS) != sector
-
-    fun showPosts(section: SectionType) {
-        if (!shouldShowPosts(section.selection)) return
-        viewModelScope.launch {
-            handle.set(KEY_POSTS, CLEAR_FIST)
-            launch {
-                delay(280L)
-                handle.set(KEY_POSTS, section.selection)
-            }
-        }
-    }
 }

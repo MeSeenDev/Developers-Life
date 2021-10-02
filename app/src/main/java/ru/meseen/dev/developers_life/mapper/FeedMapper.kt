@@ -1,4 +1,4 @@
-package ru.meseen.dev.developers_life.ui.fragments.latest.mapper
+package ru.meseen.dev.developers_life.mapper
 
 import ru.meseen.dev.developers_life.data.api.pojos.FeedItem
 import ru.meseen.dev.developers_life.data.db.entity.FeedEntity

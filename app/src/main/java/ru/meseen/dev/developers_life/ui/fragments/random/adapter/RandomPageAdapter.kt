@@ -1,11 +1,10 @@
-package ru.meseen.dev.developers_life.ui.fragments.latest.adapter
+package ru.meseen.dev.developers_life.ui.fragments.random.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.databinding.MainItemBinding
 import ru.meseen.dev.developers_life.model.FeedModel
@@ -13,10 +12,11 @@ import ru.meseen.dev.developers_life.ui.base.BaseHolder
 import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.DevLifeVH
 
 /**
- * @author Doroshenko Vyacheslav
+ * @author Vyacheslav Doroshenko
  */
-class PageDevListAdapter :
+class RandomPageAdapter :
     PagingDataAdapter<FeedModel, BaseHolder<FeedModel>>(DEV_LIFE_COMPARE) {
+
 
     companion object {
         private val DEV_LIFE_COMPARE = object : DiffUtil.ItemCallback<FeedModel>() {

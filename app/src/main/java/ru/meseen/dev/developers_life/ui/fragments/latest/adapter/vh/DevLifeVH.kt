@@ -13,15 +13,16 @@ import com.bumptech.glide.request.target.Target
 import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.databinding.MainItemBinding
 import ru.meseen.dev.developers_life.model.FeedModel
+import ru.meseen.dev.developers_life.ui.base.BaseHolder
 
 /**
  * @author Doroshenko Vyacheslav
  */
-class DevLifeVH(private val binding: MainItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class DevLifeVH(private val binding: MainItemBinding) : BaseHolder<FeedModel>(binding.root) {
 
-    fun bind(feedEntity: FeedModel?) {
+    override fun bind(feedEntity: FeedModel) {
         Glide.with(itemView.context).asGif()
-            .load(feedEntity?.gifURL)
+            .load(feedEntity.gifURL)
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .transition(DrawableTransitionOptions.withCrossFade())
             .centerCrop()
@@ -30,9 +31,9 @@ class DevLifeVH(private val binding: MainItemBinding) : RecyclerView.ViewHolder(
             .error(R.drawable.ic_round_error_outline_24)
             .into(binding.postImageView)
 
-        binding.descriptionTextView.text = feedEntity?.description ?: "Описание отсутствует"
-        binding.authorTextView.text = feedEntity?.author ?: "anonim"
-        binding.dateTextView.text = feedEntity?.date ?: "Jan 1, 1970 03:00:00 AM"
+        binding.descriptionTextView.text = feedEntity.description ?: "Описание отсутствует"
+        binding.authorTextView.text = feedEntity.author ?: "anonim"
+        binding.dateTextView.text = feedEntity.date ?: "Jan 1, 1970 03:00:00 AM"
     }
 
     private val progressBarListener = object : RequestListener<GifDrawable> {

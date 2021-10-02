@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.map
 import ru.meseen.dev.developers_life.data.api.DevLifeService
 import ru.meseen.dev.developers_life.data.api.query.DevLiveQuery
 import ru.meseen.dev.developers_life.data.db.DevLifeDataBase
-import ru.meseen.dev.developers_life.ui.fragments.latest.mapper.FeedMapper
+import ru.meseen.dev.developers_life.mapper.FeedMapper
 import javax.inject.Inject
 
 /**

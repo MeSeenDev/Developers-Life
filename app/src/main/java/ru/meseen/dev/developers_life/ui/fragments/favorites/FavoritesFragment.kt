@@ -1,4 +1,4 @@
-package ru.meseen.dev.developers_life.ui.fragments.favorites.viewmodel
+package ru.meseen.dev.developers_life.ui.fragments.favorites
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,8 +21,13 @@ class FavoritesFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _vb = FavoriteFragmentBinding.inflate(inflater)
         return vb.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _vb = null
     }
 }

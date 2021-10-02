@@ -20,6 +20,6 @@
         android:label="TopFragment" />
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="ru.meseen.dev.developers_life.ui.fragments.favorites.viewmodel.FavoritesFragment"
+        android:name="ru.meseen.dev.developers_life.ui.fragments.favorites.FavoritesFragment"
         android:label="FavoritesFragment" />
 </navigation>

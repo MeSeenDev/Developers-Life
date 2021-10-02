@@ -15,10 +15,12 @@ import android.net.NetworkCapabilities.NET_CAPABILITY_VALIDATED
 import android.os.Build
 import androidx.lifecycle.LiveData
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * @author Doroshenko Vyacheslav
  */
+@Singleton
 class ConnectionObserver @Inject constructor(
     private val context: Context
 ) : LiveData<Boolean>() {

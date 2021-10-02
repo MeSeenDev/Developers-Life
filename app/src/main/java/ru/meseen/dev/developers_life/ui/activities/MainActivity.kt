@@ -2,8 +2,11 @@ package ru.meseen.dev.developers_life.ui.activities
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.databinding.MainActivityBinding
 import ru.meseen.dev.developers_life.ui.base.BaseActivity
 
@@ -21,5 +24,16 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
         binding.bottomNavigationView.setupWithNavController(navController)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        when(item.itemId){
+            R.id.favorite ->{
+
+                Toast.makeText(this, "Not Implemented", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> false
+        }
+
 
 }

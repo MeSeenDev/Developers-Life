@@ -13,12 +13,11 @@ import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import ru.meseen.dev.developers_life.databinding.LatestFragmentBinding
-import ru.meseen.dev.developers_life.databinding.MainFragmentBinding
 import ru.meseen.dev.developers_life.ui.base.BaseFragment
+import ru.meseen.dev.developers_life.ui.base.BasePageChangeCallback
 import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.FooterLoadStateAdapter
 import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.HeaderLoadStateAdapter
 import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.PageDevListAdapter
-import ru.meseen.dev.developers_life.ui.fragments.latest.viewmodel.LatestViewModel
 
 /**
  * @author Doroshenko Vyacheslav
@@ -43,12 +42,7 @@ class LatestFragment : BaseFragment() {
 
     @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        /*  val bottomNavigationView =
-              view.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-          bottomNavigationView.setOnItemSelectedListener(bottomNavigationListener)*/
-
         adapterConfig()
-
         lifecycleScope.launchWhenCreated {
             viewModel.networkStatus.observe(viewLifecycleOwner, { isConnected ->
                 if (isConnected) {
@@ -83,7 +77,6 @@ class LatestFragment : BaseFragment() {
                 adapter.submitData(it)
             }
         }
-
     }
 
     private fun stateObserve() {
@@ -104,20 +97,7 @@ class LatestFragment : BaseFragment() {
     }
 
 
-    private val pageListener = object : ViewPager2.OnPageChangeCallback() {
-
-        override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
-        ) {
-
-        }
-
-        override fun onPageSelected(position: Int) {
-
-        }
-
+    private val pageListener = object : BasePageChangeCallback()  {
         override fun onPageScrollStateChanged(state: Int) {
             vb.swipeRefreshLayout.isEnabled = state == ViewPager2.SCROLL_STATE_IDLE
         }

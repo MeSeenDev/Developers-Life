@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.LoadStateVH
@@ -11,9 +12,9 @@ import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.LoadStateVH
 /**
  * @author Doroshenko Vyacheslav
  */
-class FooterLoadStateAdapter(private val adapter: PageDevListAdapter) :
-    LoadStateAdapter<RecyclerView.ViewHolder>() {
-
+class FooterLoadStateAdapter<ITEM : Any, VH : RecyclerView.ViewHolder, T : PagingDataAdapter<ITEM, VH>>(
+    private val adapter: T
+) : LoadStateAdapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
