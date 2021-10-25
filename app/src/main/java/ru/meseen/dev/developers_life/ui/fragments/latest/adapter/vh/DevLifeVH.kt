@@ -1,5 +1,7 @@
 package ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh
 
+import android.content.Intent
+import android.content.Intent.ACTION_SEND
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -34,6 +36,16 @@ class DevLifeVH(private val binding: MainItemBinding) : BaseHolder<FeedModel>(bi
         binding.descriptionTextView.text = feedEntity.description ?: "Описание отсутствует"
         binding.authorTextView.text = feedEntity.author ?: "anonim"
         binding.dateTextView.text = feedEntity.date ?: "Jan 1, 1970 03:00:00 AM"
+
+        binding.share.setOnClickListener {
+            Intent().apply {
+                action = ACTION_SEND
+                type = "text/plain";
+                putExtra(Intent.EXTRA_SUBJECT, feedEntity.description);
+                putExtra(Intent.EXTRA_TEXT, feedEntity.gifURL);
+                binding.root.context.startActivity(Intent.createChooser(this,feedEntity.gifURL))
+            }
+        }
     }
 
     private val progressBarListener = object : RequestListener<GifDrawable> {

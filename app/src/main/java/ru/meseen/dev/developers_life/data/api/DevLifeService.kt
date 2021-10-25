@@ -27,5 +27,8 @@ interface DevLifeService {
         @Path("page") page: Int = 0,
         @Query("pageSize") pageSize: Int = 5,
         @Query("types") types: String = "gif"
-    ): BaseResponse<FeedItem>
+    ): BaseResponse<List<FeedItem>>
+
+    @GET("random")
+    suspend fun loadRandom():FeedItem
 }

@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
 data class BaseResponse<T>
     (
     @SerialName("result")
-    val feed: List<T> = listOf(),
+    val feed: T = Any() as T,
 
     @SerialName("totalCount")
     val totalCount: Int = 0

@@ -56,9 +56,15 @@ class DevLifeRemoteMediator(
                 }
             }
 
-            val resultsItem = service.loadData(section = query.feedSection, page = page)
-            if (resultsItem.totalCount < 1) throw EmptyFeedException("Feed is Empty")
-            val resultEntitys = resultsItem.feed.map {
+
+
+            val resultsItem = if(query.feedSection == "random") // FIXME: 25.10.2021 refactor
+                listOf(service.loadRandom())
+            else
+                service.loadData(section = query.feedSection, page = page).feed
+
+            if (resultsItem.isEmpty()) throw EmptyFeedException("Feed is Empty")
+            val resultEntitys = resultsItem.map {
                 mapper.fromResponseToEntity(it, query.feedSection)
             }
 
