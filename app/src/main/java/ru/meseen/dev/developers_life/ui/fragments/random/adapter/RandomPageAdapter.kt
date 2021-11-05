@@ -14,7 +14,7 @@ import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.DevLifeVH
 /**
  * @author Vyacheslav Doroshenko
  */
-class RandomPageAdapter :
+class RandomPageAdapter(private val onClick: (model: FeedModel) -> Unit) :
     PagingDataAdapter<FeedModel, BaseHolder<FeedModel>>(DEV_LIFE_COMPARE) {
 
 
@@ -34,7 +34,7 @@ class RandomPageAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FeedModel> {
         val binding = MainItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DevLifeVH(binding)
+        return DevLifeVH(binding, onClick)
     }
 
 

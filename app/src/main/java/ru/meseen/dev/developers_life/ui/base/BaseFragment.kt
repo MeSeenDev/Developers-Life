@@ -12,4 +12,6 @@ open class BaseFragment : Fragment() {
 
     val navController by lazy { (requireActivity() as MainActivity).navController }
 
+
+    val bottomNavBar = (activity as MainActivity).appBarConfiguration
 }

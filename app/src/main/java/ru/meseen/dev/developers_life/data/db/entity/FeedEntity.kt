@@ -57,7 +57,7 @@ data class FeedEntity(
     @ColumnInfo(name = "votes")
     val votes: Int = 0,
 
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "id", index = true)
     val post_id: Long,
 
     @ColumnInfo(name = "height")
@@ -67,5 +67,8 @@ data class FeedEntity(
     val canVote: Boolean = false,
 
     @ColumnInfo(name = "section")
-    val section: String = ""
+    val section: String = "",
+
+    @ColumnInfo(name = "favorite")
+    var favorite: Boolean = false,
 ) : BaseEntity

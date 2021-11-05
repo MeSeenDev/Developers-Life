@@ -23,11 +23,20 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.bottomNavigationView.setupWithNavController(navController)
+        binding.mainToolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.favorite -> {
+                    navController.navigate(R.id.favoritesFragment)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
-        when(item.itemId){
-            R.id.favorite ->{
+        when (item.itemId) {
+            R.id.favorite -> {
 
                 Toast.makeText(this, "Not Implemented", Toast.LENGTH_SHORT).show()
                 true

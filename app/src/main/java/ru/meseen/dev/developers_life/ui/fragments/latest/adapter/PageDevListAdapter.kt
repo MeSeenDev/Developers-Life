@@ -15,7 +15,7 @@ import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.DevLifeVH
 /**
  * @author Doroshenko Vyacheslav
  */
-class PageDevListAdapter :
+class PageDevListAdapter(val onFavClick: (model: FeedModel) -> Unit) :
     PagingDataAdapter<FeedModel, BaseHolder<FeedModel>>(DEV_LIFE_COMPARE) {
 
     companion object {
@@ -34,14 +34,14 @@ class PageDevListAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FeedModel> {
         val binding = MainItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DevLifeVH(binding)
+        return DevLifeVH(binding,onFavClick)
     }
 
 
     override fun onBindViewHolder(holder: BaseHolder<FeedModel>, position: Int) {
         getItem(position)?.let { item ->
-            holder.itemView.animation =
-                AnimationUtils.loadAnimation(holder.itemView.context, R.anim.recycle_alpha)
+           /* holder.itemView.animation =
+                AnimationUtils.loadAnimation(holder.itemView.context, R.anim.recycle_alpha)*/
             holder.bind(item)
         }
     }

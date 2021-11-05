@@ -21,5 +21,6 @@ data class FeedModel(
     val post_id: Long = 0,
     val height: String = "",
     val canVote: Boolean = false,
-    val section: String = ""
+    val section: String = "",
+    var favorite: Boolean = false,
 )

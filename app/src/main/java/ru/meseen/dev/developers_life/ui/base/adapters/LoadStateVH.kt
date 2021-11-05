@@ -1,4 +1,4 @@
-package ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh
+package ru.meseen.dev.developers_life.ui.base.adapters
 
 import android.view.View
 import android.widget.ProgressBar

@@ -7,15 +7,18 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import ru.meseen.dev.developers_life.data.api.ConnectionObserver
 import ru.meseen.dev.developers_life.data.api.query.DevLiveQuery
 import ru.meseen.dev.developers_life.data.repos.DevLifeRepository
+import ru.meseen.dev.developers_life.mapper.FeedMapper
 import ru.meseen.dev.developers_life.model.FeedModel
 import ru.meseen.dev.developers_life.ui.fragments.latest.LatestViewModel
 import javax.inject.Inject
@@ -27,7 +30,8 @@ import javax.inject.Inject
 class RandomViewModel @Inject constructor(
     private val handle: SavedStateHandle,
     private val repository: DevLifeRepository,
-    val networkStatus: ConnectionObserver
+    val networkStatus: ConnectionObserver,
+    private val mapper: FeedMapper,
 ) : ViewModel() {
 
     companion object {
@@ -51,4 +55,9 @@ class RandomViewModel @Inject constructor(
         }
         .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
 
+    fun invertToFav(model: FeedModel){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.emitFavItem(mapper.fromModelToFavEntity(model))
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package ru.meseen.dev.developers_life.ui.fragments.latest.adapter
+package ru.meseen.dev.developers_life.ui.base.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,6 @@ import androidx.paging.LoadStateAdapter
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.meseen.dev.developers_life.R
-import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.LoadStateVH
 
 /**
  * @author Doroshenko Vyacheslav

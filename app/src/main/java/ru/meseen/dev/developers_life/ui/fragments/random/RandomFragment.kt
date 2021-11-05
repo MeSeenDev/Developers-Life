@@ -13,12 +13,12 @@ import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import ru.meseen.dev.developers_life.databinding.RandomFragmentBinding
+import ru.meseen.dev.developers_life.model.FeedModel
 import ru.meseen.dev.developers_life.ui.base.BaseFragment
 import ru.meseen.dev.developers_life.ui.base.BasePageChangeCallback
-import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.FooterLoadStateAdapter
-import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.HeaderLoadStateAdapter
+import ru.meseen.dev.developers_life.ui.base.adapters.FooterLoadStateAdapter
+import ru.meseen.dev.developers_life.ui.base.adapters.HeaderLoadStateAdapter
 import ru.meseen.dev.developers_life.ui.fragments.random.adapter.RandomPageAdapter
-import java.util.*
 
 /**
  * @author Doroshenko Vyacheslav
@@ -30,7 +30,7 @@ class RandomFragment : BaseFragment() {
     private val vb : RandomFragmentBinding by lazy { _vb!!}
 
     private val viewModel by viewModels<RandomViewModel>()
-    private val adapter = RandomPageAdapter()
+    private val adapter by lazy { RandomPageAdapter(viewModel::invertToFav) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -105,4 +105,6 @@ class RandomFragment : BaseFragment() {
         vb.viewPager2.unregisterOnPageChangeCallback(pageListener)
         _vb = null
     }
+
+
 }

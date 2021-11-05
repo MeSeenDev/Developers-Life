@@ -15,8 +15,8 @@ import kotlinx.coroutines.flow.collectLatest
 import ru.meseen.dev.developers_life.databinding.TopFragmentBinding
 import ru.meseen.dev.developers_life.ui.base.BaseFragment
 import ru.meseen.dev.developers_life.ui.base.BasePageChangeCallback
-import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.FooterLoadStateAdapter
-import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.HeaderLoadStateAdapter
+import ru.meseen.dev.developers_life.ui.base.adapters.FooterLoadStateAdapter
+import ru.meseen.dev.developers_life.ui.base.adapters.HeaderLoadStateAdapter
 import ru.meseen.dev.developers_life.ui.fragments.top.adapter.TopPageAdapter
 
 /**

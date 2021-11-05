@@ -7,13 +7,10 @@ import ru.meseen.dev.developers_life.data.db.entity.FavFeedEntity
 import ru.meseen.dev.developers_life.model.FeedModel
 
 /**
- * @author Doroshenko Vyacheslav
+ * @author Vyacheslav Doroshenko
  */
-interface DevLifeRepository : FavDevLifeRepository {
-    fun loadData(
-        query: DevLiveQuery
-    ): Flow<PagingData<FeedModel>>
+interface FavDevLifeRepository {
 
-    suspend fun emitFavItem(entity: FavFeedEntity)
+    fun loadFavData(): Flow<PagingData<FeedModel>>
 
 }

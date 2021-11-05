@@ -1,4 +1,4 @@
-package ru.meseen.dev.developers_life.ui.fragments.top.adapter
+package ru.meseen.dev.developers_life.ui.fragments.favorites.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,17 +6,18 @@ import android.view.animation.AnimationUtils
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import ru.meseen.dev.developers_life.R
+import ru.meseen.dev.developers_life.databinding.MainFavItemBinding
 import ru.meseen.dev.developers_life.databinding.MainItemBinding
 import ru.meseen.dev.developers_life.model.FeedModel
 import ru.meseen.dev.developers_life.ui.base.BaseHolder
+import ru.meseen.dev.developers_life.ui.fragments.favorites.adapter.vh.FavDevLifeVH
 import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.DevLifeVH
 
 /**
  * @author Vyacheslav Doroshenko
  */
-class TopPageAdapter :
-    PagingDataAdapter<FeedModel, BaseHolder<FeedModel>>(DEV_LIFE_COMPARE) {
-
+class FavoriteAdapter:
+PagingDataAdapter<FeedModel, BaseHolder<FeedModel>>(DEV_LIFE_COMPARE) {
 
     companion object {
         private val DEV_LIFE_COMPARE = object : DiffUtil.ItemCallback<FeedModel>() {
@@ -33,8 +34,8 @@ class TopPageAdapter :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FeedModel> {
-        val binding = MainItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DevLifeVH(binding,{})
+        val binding = MainFavItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FavDevLifeVH(binding)
     }
 
 

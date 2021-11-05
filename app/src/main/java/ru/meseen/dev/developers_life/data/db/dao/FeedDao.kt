@@ -1,10 +1,8 @@
 package ru.meseen.dev.developers_life.data.db.dao
 
 import androidx.paging.PagingSource
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import ru.meseen.dev.developers_life.data.db.entity.FavFeedEntity
 import ru.meseen.dev.developers_life.data.db.entity.FeedEntity
 
 /**
@@ -18,4 +16,6 @@ interface FeedDao : BaseDao<FeedEntity> {
 
     @Query("DELETE FROM DATA_TABLE WHERE section = :section")
     suspend fun deleteByListType(section: String)
+
+
 }

@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import ru.meseen.dev.developers_life.data.api.DevLifeService
 import ru.meseen.dev.developers_life.data.db.DevLifeDataBase
 import ru.meseen.dev.developers_life.data.repos.DevLifeRepository
+import ru.meseen.dev.developers_life.data.repos.FavDevLifeRepository
 import ru.meseen.dev.developers_life.data.repos.MainRepository
 import ru.meseen.dev.developers_life.mapper.FeedMapper
 import javax.inject.Singleton
@@ -30,5 +31,9 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun providesDevLifeRepository(repository: MainRepository): DevLifeRepository = repository
+
+    @Provides
+    @Singleton
+    fun providesFavDevLifeRepository(repository: MainRepository): FavDevLifeRepository = repository
 
 }

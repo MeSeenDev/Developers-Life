@@ -4,14 +4,16 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.room.withTransaction
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import ru.meseen.dev.developers_life.data.api.DevLifeService
 import ru.meseen.dev.developers_life.data.api.query.DevLiveQuery
 import ru.meseen.dev.developers_life.data.db.DevLifeDataBase
 import ru.meseen.dev.developers_life.data.db.entity.FeedEntity
 import ru.meseen.dev.developers_life.data.db.entity.PageKeyEntity
 import ru.meseen.dev.developers_life.exceptions.EmptyFeedException
-import ru.meseen.dev.developers_life.ui.base.BaseRemoteMediator
 import ru.meseen.dev.developers_life.mapper.FeedMapper
+import ru.meseen.dev.developers_life.ui.base.BaseRemoteMediator
 
 /**
  * @author Doroshenko Vyacheslav
@@ -29,7 +31,7 @@ class DevLifeRemoteMediator(
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, FeedEntity>
-    ): MediatorResult {
+    ): MediatorResult = withContext(Dispatchers.IO) {
         try {
             val page: Int = when (loadType) {
                 LoadType.REFRESH -> {
@@ -40,9 +42,9 @@ class DevLifeRemoteMediator(
                 LoadType.PREPEND -> {
                     getRemoteKeyForFirstItem(state) { pageKeyDao.remoteKeyById(it) }?.let { remoteKeys ->
                         remoteKeys.prevPage
-                            ?: return MediatorResult.Success(endOfPaginationReached = true)
+                            ?: return@withContext MediatorResult.Success(endOfPaginationReached = true)
                     }
-                        ?: return MediatorResult.Success(endOfPaginationReached = false)
+                        ?: return@withContext MediatorResult.Success(endOfPaginationReached = false)
 
                 }
                 LoadType.APPEND -> {
@@ -50,23 +52,26 @@ class DevLifeRemoteMediator(
                         pageKeyDao.remoteKeyById(it)
                     }?.let { remoteKeys ->
                         remoteKeys.nextPage
-                            ?: return MediatorResult.Success(endOfPaginationReached = true)
+                            ?: return@withContext MediatorResult.Success(endOfPaginationReached = true)
                     }
-                        ?: return MediatorResult.Success(endOfPaginationReached = false)
+                        ?: return@withContext MediatorResult.Success(endOfPaginationReached = false)
                 }
             }
 
 
-
-            val resultsItem = if(query.feedSection == "random") // FIXME: 25.10.2021 refactor
+            val resultsItem = if (query.feedSection == "random") // FIXME: 25.10.2021 refactor
                 listOf(service.loadRandom())
             else
                 service.loadData(section = query.feedSection, page = page).feed
 
             if (resultsItem.isEmpty()) throw EmptyFeedException("Feed is Empty")
-            val resultEntitys = resultsItem.map {
-                mapper.fromResponseToEntity(it, query.feedSection)
+
+            val resultEntitys = resultsItem.map { feedItem ->
+                mapper.fromResponseToEntity(feedItem, query.feedSection).apply {
+                    favorite = dataBase.feedFavorite().isExists(feedItem.id.toLong())
+                }
             }
+
 
             val endOfPaginationReached = resultEntitys.isEmpty()
 
@@ -92,9 +97,10 @@ class DevLifeRemoteMediator(
                 resultsDao.insert(resultEntitys)
                 pageKeyDao.insert(keys)
             }
-            return MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
+            return@withContext MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (e: Throwable) {
-            return MediatorResult.Error(e)
+            return@withContext MediatorResult.Error(e)
         }
     }
+
 }

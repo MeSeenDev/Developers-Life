@@ -15,8 +15,8 @@ import kotlinx.coroutines.flow.collectLatest
 import ru.meseen.dev.developers_life.databinding.LatestFragmentBinding
 import ru.meseen.dev.developers_life.ui.base.BaseFragment
 import ru.meseen.dev.developers_life.ui.base.BasePageChangeCallback
-import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.FooterLoadStateAdapter
-import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.HeaderLoadStateAdapter
+import ru.meseen.dev.developers_life.ui.base.adapters.FooterLoadStateAdapter
+import ru.meseen.dev.developers_life.ui.base.adapters.HeaderLoadStateAdapter
 import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.PageDevListAdapter
 
 /**
@@ -25,7 +25,7 @@ import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.PageDevListAdap
 @AndroidEntryPoint
 class LatestFragment : BaseFragment() {
 
-    private val adapter = PageDevListAdapter()
+    private val adapter by lazy { PageDevListAdapter(viewModel::invertFavModel) }
     private val viewModel: LatestViewModel by viewModels()
 
     private var _vb: LatestFragmentBinding? = null
@@ -97,7 +97,7 @@ class LatestFragment : BaseFragment() {
     }
 
 
-    private val pageListener = object : BasePageChangeCallback()  {
+    private val pageListener = object : BasePageChangeCallback() {
         override fun onPageScrollStateChanged(state: Int) {
             vb.swipeRefreshLayout.isEnabled = state == ViewPager2.SCROLL_STATE_IDLE
         }
