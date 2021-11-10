@@ -30,5 +30,5 @@ interface DevLifeService {
     ): BaseResponse<List<FeedItem>>
 
     @GET("random")
-    suspend fun loadRandom():FeedItem
+    suspend fun loadRandom(): FeedItem
 }

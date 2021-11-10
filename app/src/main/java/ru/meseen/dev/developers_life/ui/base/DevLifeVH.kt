@@ -1,9 +1,9 @@
-package ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh
+package ru.meseen.dev.developers_life.ui.base
 
 import android.content.Intent
 import android.content.Intent.ACTION_SEND
+import android.util.Log
 import androidx.annotation.DrawableRes
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -15,8 +15,9 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.databinding.MainItemBinding
+import ru.meseen.dev.developers_life.extensions.dp
+import ru.meseen.dev.developers_life.extensions.getResourceDrawable
 import ru.meseen.dev.developers_life.model.FeedModel
-import ru.meseen.dev.developers_life.ui.base.BaseHolder
 
 /**
  * @author Doroshenko Vyacheslav
@@ -26,8 +27,13 @@ class DevLifeVH(
     val onFavClick: (model: FeedModel) -> Unit
 ) : BaseHolder<FeedModel>(binding.root) {
 
+    private val context by lazy { binding.root.context }
+
     override fun bind(model: FeedModel) {
-        Glide.with(itemView.context).asGif()
+        binding.postImageView.minimumHeight =
+           model.height.dp /2
+
+    Glide.with(itemView.context).asGif()
             .load(model.gifURL)
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .transition(DrawableTransitionOptions.withCrossFade())
@@ -37,25 +43,31 @@ class DevLifeVH(
             .error(R.drawable.ic_round_error_outline_24)
             .into(binding.postImageView)
 
-        binding.descriptionTextView.text = model.description ?: "Описание отсутствует"
-        binding.authorTextView.text = model.author ?: "anonim"
-        binding.dateTextView.text = model.date ?: "Jan 1, 1970 03:00:00 AM"
+        binding.descriptionTextView.text = model.description
+        binding.authorTextView.text = model.author
+        binding.dateTextView.text = model.date
 
         binding.share.setOnClickListener {
             Intent().apply {
                 action = ACTION_SEND
-                type = "text/plain";
-                putExtra(Intent.EXTRA_SUBJECT, model.description);
-                putExtra(Intent.EXTRA_TEXT, model.gifURL);
-                binding.root.context.startActivity(Intent.createChooser(this, model.gifURL))
+                type = "text/plain"
+                putExtra(Intent.EXTRA_SUBJECT, model.description)
+                putExtra(Intent.EXTRA_TEXT, model.gifURL)
+                context.startActivity(Intent.createChooser(this, model.gifURL))
             }
         }
-        binding.addFav.setImageDrawable(
-            ResourcesCompat.getDrawable(binding.root.context.resources, getFavId(model), null)
-        )
+        updateFavStat(model)
         binding.addFav.setOnClickListener {
+            model.favorite = !model.favorite
+            updateFavStat(model)
             onFavClick(model)
         }
+    }
+
+    private fun updateFavStat(model: FeedModel) {
+        binding.addFav.setImageDrawable(
+            context.getResourceDrawable(getFavId(model))
+        )
     }
 
     @DrawableRes

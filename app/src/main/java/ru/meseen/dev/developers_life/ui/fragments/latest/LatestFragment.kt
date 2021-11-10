@@ -12,6 +12,7 @@ import androidx.paging.LoadState
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.databinding.LatestFragmentBinding
 import ru.meseen.dev.developers_life.ui.base.BaseFragment
 import ru.meseen.dev.developers_life.ui.base.BasePageChangeCallback
@@ -25,7 +26,7 @@ import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.PageDevListAdap
 @AndroidEntryPoint
 class LatestFragment : BaseFragment() {
 
-    private val adapter by lazy { PageDevListAdapter(viewModel::invertFavModel) }
+    private val adapter by lazy { PageDevListAdapter(viewModel::invertFav) }
     private val viewModel: LatestViewModel by viewModels()
 
     private var _vb: LatestFragmentBinding? = null
@@ -37,6 +38,7 @@ class LatestFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _vb = LatestFragmentBinding.inflate(LayoutInflater.from(requireContext()))
+        title = getString(R.string.developers_life)
         return vb.root
     }
 

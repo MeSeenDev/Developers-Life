@@ -52,7 +52,7 @@ data class FeedItem(
     val votes: Int = 0,
 
     @SerialName("id")
-    val id: Int,
+    val post_id: Int,
 
     @SerialName("height")
     val height: String = "",

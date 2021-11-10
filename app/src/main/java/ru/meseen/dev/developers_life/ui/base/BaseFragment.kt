@@ -1,7 +1,6 @@
 package ru.meseen.dev.developers_life.ui.base
 
 import androidx.fragment.app.Fragment
-import androidx.viewbinding.ViewBinding
 import ru.meseen.dev.developers_life.ui.activities.MainActivity
 
 /**
@@ -9,9 +8,18 @@ import ru.meseen.dev.developers_life.ui.activities.MainActivity
  */
 open class BaseFragment : Fragment() {
 
+    private val mainActivity by lazy { (requireActivity() as MainActivity) }
 
-    val navController by lazy { (requireActivity() as MainActivity).navController }
+    var isBottomNavigationViewVisible: Boolean
+        get() = mainActivity.isBottomNavigationViewVisible
+        set(value) {
+            mainActivity.isBottomNavigationViewVisible = value
+        }
 
+    var title: String
+        get() = mainActivity.titleText.text.toString()
+        set(value) {
+            mainActivity.titleText.text = value
+        }
 
-    val bottomNavBar = (activity as MainActivity).appBarConfiguration
 }

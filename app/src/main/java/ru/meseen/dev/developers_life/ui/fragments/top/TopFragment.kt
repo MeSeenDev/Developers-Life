@@ -12,6 +12,7 @@ import androidx.paging.LoadState
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.databinding.TopFragmentBinding
 import ru.meseen.dev.developers_life.ui.base.BaseFragment
 import ru.meseen.dev.developers_life.ui.base.BasePageChangeCallback
@@ -30,7 +31,7 @@ class TopFragment : BaseFragment() {
 
     private val viewModel by viewModels<TopViewModel>()
 
-    private val adapter = TopPageAdapter()
+    private val adapter by lazy { TopPageAdapter(viewModel::invertFav) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +39,7 @@ class TopFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _vb = TopFragmentBinding.inflate(inflater)
+        title = getString(R.string.developers_life)
         return vb.root
     }
 

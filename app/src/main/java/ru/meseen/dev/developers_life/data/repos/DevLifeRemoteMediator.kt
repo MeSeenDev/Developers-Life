@@ -68,7 +68,7 @@ class DevLifeRemoteMediator(
 
             val resultEntitys = resultsItem.map { feedItem ->
                 mapper.fromResponseToEntity(feedItem, query.feedSection).apply {
-                    favorite = dataBase.feedFavorite().isExists(feedItem.id.toLong())
+                    favorite = dataBase.feedFavorite().isExists(feedItem.post_id.toLong())
                 }
             }
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ru.meseen.dev.developers_life.R
@@ -19,10 +20,21 @@ class MainActivity : BaseActivity() {
     private val binding: MainActivityBinding
             by lazy { MainActivityBinding.inflate(LayoutInflater.from(this)) }
 
+    private val bottomAppBar by lazy { binding.bottomNavigationView }
+
+    var isBottomNavigationViewVisible: Boolean
+        get() = bottomAppBar.isVisible
+        set(value) {
+            bottomAppBar.isVisible = value
+        }
+
+    val titleText by lazy { binding.mainTitle }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        titleText.text = getString(R.string.developers_life)
         setContentView(binding.root)
-        binding.bottomNavigationView.setupWithNavController(navController)
+        bottomAppBar.setupWithNavController(navController)
         binding.mainToolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.favorite -> {

@@ -9,12 +9,12 @@ import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.databinding.MainItemBinding
 import ru.meseen.dev.developers_life.model.FeedModel
 import ru.meseen.dev.developers_life.ui.base.BaseHolder
-import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.DevLifeVH
+import ru.meseen.dev.developers_life.ui.base.DevLifeVH
 
 /**
  * @author Vyacheslav Doroshenko
  */
-class TopPageAdapter :
+class TopPageAdapter(private val onFavClick: (model: FeedModel) -> Unit) :
     PagingDataAdapter<FeedModel, BaseHolder<FeedModel>>(DEV_LIFE_COMPARE) {
 
 
@@ -34,7 +34,7 @@ class TopPageAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FeedModel> {
         val binding = MainItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DevLifeVH(binding,{})
+        return DevLifeVH(binding, onFavClick)
     }
 
 

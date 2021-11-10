@@ -7,17 +7,15 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.databinding.MainFavItemBinding
-import ru.meseen.dev.developers_life.databinding.MainItemBinding
 import ru.meseen.dev.developers_life.model.FeedModel
 import ru.meseen.dev.developers_life.ui.base.BaseHolder
 import ru.meseen.dev.developers_life.ui.fragments.favorites.adapter.vh.FavDevLifeVH
-import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.DevLifeVH
 
 /**
  * @author Vyacheslav Doroshenko
  */
-class FavoriteAdapter:
-PagingDataAdapter<FeedModel, BaseHolder<FeedModel>>(DEV_LIFE_COMPARE) {
+class FavoriteAdapter(private val onFavClick: (model: FeedModel) -> Unit) :
+    PagingDataAdapter<FeedModel, BaseHolder<FeedModel>>(DEV_LIFE_COMPARE) {
 
     companion object {
         private val DEV_LIFE_COMPARE = object : DiffUtil.ItemCallback<FeedModel>() {
@@ -35,7 +33,7 @@ PagingDataAdapter<FeedModel, BaseHolder<FeedModel>>(DEV_LIFE_COMPARE) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FeedModel> {
         val binding = MainFavItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return FavDevLifeVH(binding)
+        return FavDevLifeVH(binding, onFavClick)
     }
 
 

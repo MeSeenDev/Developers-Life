@@ -34,7 +34,7 @@ class MainRepository @Inject constructor(
         )
     ) {
         dataBase.feedDao().pagingSource(query.feedSection)
-    }.flow.map { data -> data.map { entity -> mapper.fromEntityToModel(entity) }}
+    }.flow.map { data -> data.map { entity -> mapper.fromEntityToModel(entity) } }
         .flowOn(Dispatchers.IO)
 
     override suspend fun emitFavItem(entity: FavFeedEntity) {
@@ -51,6 +51,10 @@ class MainRepository @Inject constructor(
             pagingSourceFactory = { dataBase.feedFavorite().loadFav() }
         ).flow.map { data -> data.map { entity -> mapper.fromFavEntityToModel(entity) } }
             .flowOn(Dispatchers.IO)
+
+    override suspend fun deleteFromFavorites(model: FeedModel) {
+        dataBase.feedFavorite().deleteById(model.post_id)
+    }
 
 
 }

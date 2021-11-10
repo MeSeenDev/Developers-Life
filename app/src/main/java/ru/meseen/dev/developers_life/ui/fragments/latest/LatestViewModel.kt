@@ -6,6 +6,7 @@ import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -30,7 +31,7 @@ class LatestViewModel @Inject constructor(
     private val handle: SavedStateHandle,
     private val repository: DevLifeRepository,
     val networkStatus: ConnectionObserver,
-    val feedMapper: FeedMapper,
+    private val mapper: FeedMapper,
 ) : ViewModel() {
 
     companion object {
@@ -57,13 +58,12 @@ class LatestViewModel @Inject constructor(
                 )
             }
         }
-        .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
+        .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty()).cachedIn(viewModelScope)
 
 
-    fun invertFavModel(model: FeedModel) {
+    fun invertFav(model: FeedModel) {
         viewModelScope.launch(Dispatchers.IO) {
-            val favEntity = feedMapper.fromModelToFavEntity(model.copy(favorite = !model.favorite))
-            repository.emitFavItem(favEntity)
+            repository.emitFavItem(mapper.fromModelToFavEntity(model))
         }
     }
 }

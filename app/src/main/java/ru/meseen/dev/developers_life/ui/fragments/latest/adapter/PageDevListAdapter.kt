@@ -2,20 +2,17 @@ package ru.meseen.dev.developers_life.ui.fragments.latest.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.databinding.MainItemBinding
 import ru.meseen.dev.developers_life.model.FeedModel
 import ru.meseen.dev.developers_life.ui.base.BaseHolder
-import ru.meseen.dev.developers_life.ui.fragments.latest.adapter.vh.DevLifeVH
+import ru.meseen.dev.developers_life.ui.base.DevLifeVH
 
 /**
  * @author Doroshenko Vyacheslav
  */
-class PageDevListAdapter(val onFavClick: (model: FeedModel) -> Unit) :
+class PageDevListAdapter(private val onFavClick: (model: FeedModel) -> Unit) :
     PagingDataAdapter<FeedModel, BaseHolder<FeedModel>>(DEV_LIFE_COMPARE) {
 
     companion object {
@@ -34,14 +31,14 @@ class PageDevListAdapter(val onFavClick: (model: FeedModel) -> Unit) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder<FeedModel> {
         val binding = MainItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DevLifeVH(binding,onFavClick)
+        return DevLifeVH(binding, onFavClick)
     }
 
 
     override fun onBindViewHolder(holder: BaseHolder<FeedModel>, position: Int) {
         getItem(position)?.let { item ->
-           /* holder.itemView.animation =
-                AnimationUtils.loadAnimation(holder.itemView.context, R.anim.recycle_alpha)*/
+            /* holder.itemView.animation =
+                 AnimationUtils.loadAnimation(holder.itemView.context, R.anim.recycle_alpha)*/
             holder.bind(item)
         }
     }

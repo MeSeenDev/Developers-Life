@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.collectLatest
 import ru.meseen.dev.developers_life.databinding.FavoriteFragmentBinding
 import ru.meseen.dev.developers_life.ui.base.BaseFragment
 import ru.meseen.dev.developers_life.ui.fragments.favorites.adapter.FavoriteAdapter
-import ru.meseen.dev.developers_life.ui.fragments.latest.LatestViewModel
 
 /**
  * @author Doroshenko Vyacheslav
@@ -31,20 +30,22 @@ class FavoritesFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _vb = FavoriteFragmentBinding.inflate(inflater)
+        title = "Favorites"
         return vb.root
     }
 
     @ExperimentalPagingApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = FavoriteAdapter()
+        val adapter = FavoriteAdapter(viewModel::deleteFromFav)
         vb.favRecycle.adapter = adapter
         lifecycleScope.launchWhenCreated {
-            viewModel.posts.collectLatest { list->
+            viewModel.posts.collectLatest { list ->
                 adapter.submitData(list)
             }
         }
 
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

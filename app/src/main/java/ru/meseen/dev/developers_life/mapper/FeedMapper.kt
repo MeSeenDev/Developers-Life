@@ -28,7 +28,7 @@ class FeedMapper @Inject constructor() {
             commentsCount = resultItem.commentsCount,
             width = resultItem.width,
             votes = resultItem.votes,
-            post_id = resultItem.id.toLong(),
+            post_id = resultItem.post_id.toLong(),
             height = resultItem.height,
             canVote = resultItem.canVote,
             section = selectionType,
@@ -48,10 +48,18 @@ class FeedMapper @Inject constructor() {
             fileSize = feedEntity.fileSize,
             gifSize = feedEntity.gifSize,
             commentsCount = feedEntity.commentsCount,
-            width = feedEntity.width,
+            width = try {
+                feedEntity.width.toInt()
+            } catch (exe: NumberFormatException) {
+                400
+            },
             votes = feedEntity.votes,
             post_id = feedEntity.post_id,
-            height = feedEntity.height,
+            height = try {
+                feedEntity.height.toInt()
+            } catch (exe: NumberFormatException) {
+                400
+            },
             canVote = feedEntity.canVote,
             section = feedEntity.section,
             favorite = feedEntity.favorite,
@@ -71,10 +79,10 @@ class FeedMapper @Inject constructor() {
             fileSize = feedModel.fileSize,
             gifSize = feedModel.gifSize,
             commentsCount = feedModel.commentsCount,
-            width = feedModel.width,
+            width = feedModel.width.toString(),
             votes = feedModel.votes,
             post_id = feedModel.post_id,
-            height = feedModel.height,
+            height = feedModel.height.toString(),
             canVote = feedModel.canVote,
             section = feedModel.section,
             favorite = feedModel.favorite,
@@ -94,36 +102,44 @@ class FeedMapper @Inject constructor() {
             fileSize = feedModel.fileSize,
             gifSize = feedModel.gifSize,
             commentsCount = feedModel.commentsCount,
-            width = feedModel.width,
+            width = feedModel.width.toString(),
             votes = feedModel.votes,
             post_id = feedModel.post_id,
-            height = feedModel.height,
+            height = feedModel.height.toString(),
             canVote = feedModel.canVote,
             section = feedModel.section,
             favorite = feedModel.favorite,
         )
 
-    fun fromFavEntityToModel(feedModel: FavFeedEntity) =
+    fun fromFavEntityToModel(favFeedEntity: FavFeedEntity) =
         FeedModel(
-            date = feedModel.date,
-            previewURL = feedModel.previewURL,
-            author = feedModel.author,
-            description = feedModel.description,
-            type = feedModel.type,
-            videoSize = feedModel.videoSize,
-            gifURL = feedModel.gifURL,
-            videoPath = feedModel.videoPath,
-            videoURL = feedModel.videoURL,
-            fileSize = feedModel.fileSize,
-            gifSize = feedModel.gifSize,
-            commentsCount = feedModel.commentsCount,
-            width = feedModel.width,
-            votes = feedModel.votes,
-            post_id = feedModel.post_id,
-            height = feedModel.height,
-            canVote = feedModel.canVote,
-            section = feedModel.section,
-            favorite = feedModel.favorite,
+            date = favFeedEntity.date,
+            previewURL = favFeedEntity.previewURL,
+            author = favFeedEntity.author,
+            description = favFeedEntity.description,
+            type = favFeedEntity.type,
+            videoSize = favFeedEntity.videoSize,
+            gifURL = favFeedEntity.gifURL,
+            videoPath = favFeedEntity.videoPath,
+            videoURL = favFeedEntity.videoURL,
+            fileSize = favFeedEntity.fileSize,
+            gifSize = favFeedEntity.gifSize,
+            commentsCount = favFeedEntity.commentsCount,
+            width = try {
+                favFeedEntity.width.toInt()
+            } catch (exe: NumberFormatException) {
+                400
+            },
+            votes = favFeedEntity.votes,
+            post_id = favFeedEntity.post_id,
+            height = try {
+                favFeedEntity.height.toInt()
+            } catch (exe: NumberFormatException) {
+                400
+            },
+            canVote = favFeedEntity.canVote,
+            section = favFeedEntity.section,
+            favorite = favFeedEntity.favorite,
         )
 
     fun fromFavEntityToFeedEntity(feedModel: FavFeedEntity) =

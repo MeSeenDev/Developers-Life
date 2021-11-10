@@ -12,8 +12,8 @@ import androidx.paging.LoadState
 import androidx.viewpager2.widget.ViewPager2
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
+import ru.meseen.dev.developers_life.R
 import ru.meseen.dev.developers_life.databinding.RandomFragmentBinding
-import ru.meseen.dev.developers_life.model.FeedModel
 import ru.meseen.dev.developers_life.ui.base.BaseFragment
 import ru.meseen.dev.developers_life.ui.base.BasePageChangeCallback
 import ru.meseen.dev.developers_life.ui.base.adapters.FooterLoadStateAdapter
@@ -26,11 +26,11 @@ import ru.meseen.dev.developers_life.ui.fragments.random.adapter.RandomPageAdapt
 @AndroidEntryPoint
 class RandomFragment : BaseFragment() {
 
-    private var _vb : RandomFragmentBinding? = null
-    private val vb : RandomFragmentBinding by lazy { _vb!!}
+    private var _vb: RandomFragmentBinding? = null
+    private val vb: RandomFragmentBinding by lazy { _vb!! }
 
     private val viewModel by viewModels<RandomViewModel>()
-    private val adapter by lazy { RandomPageAdapter(viewModel::invertToFav) }
+    private val adapter by lazy { RandomPageAdapter(viewModel::invertFav) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +38,7 @@ class RandomFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _vb = RandomFragmentBinding.inflate(inflater)
+        title = getString(R.string.developers_life)
         return vb.root
     }
 

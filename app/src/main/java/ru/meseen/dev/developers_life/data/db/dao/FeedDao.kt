@@ -1,8 +1,8 @@
 package ru.meseen.dev.developers_life.data.db.dao
 
 import androidx.paging.PagingSource
-import androidx.room.*
-import ru.meseen.dev.developers_life.data.db.entity.FavFeedEntity
+import androidx.room.Dao
+import androidx.room.Query
 import ru.meseen.dev.developers_life.data.db.entity.FeedEntity
 
 /**
