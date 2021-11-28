@@ -42,7 +42,7 @@ class RandomFragment : BaseFragment() {
         return vb.root
     }
 
-    @ExperimentalPagingApi
+    @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         adapterConfig()
         lifecycleScope.launchWhenCreated {
@@ -53,7 +53,7 @@ class RandomFragment : BaseFragment() {
         vb.viewPager2.registerOnPageChangeCallback(pageListener)
     }
 
-    @ExperimentalPagingApi
+    @OptIn(ExperimentalPagingApi::class)
     private fun adapterConfig() {
         vb.viewPager2.adapter = adapter.withLoadStateHeaderAndFooter(
             header = HeaderLoadStateAdapter(adapter),

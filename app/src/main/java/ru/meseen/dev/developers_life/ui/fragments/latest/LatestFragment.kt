@@ -39,6 +39,7 @@ class LatestFragment : BaseFragment() {
     ): View {
         _vb = LatestFragmentBinding.inflate(LayoutInflater.from(requireContext()))
         title = getString(R.string.developers_life)
+
         return vb.root
     }
 

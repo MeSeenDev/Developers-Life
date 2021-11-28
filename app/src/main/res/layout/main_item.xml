@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
+
     tools:background="@color/colorDark">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="66dp"
         app:cardBackgroundColor="@color/colorDarkGrey"
         app:cardCornerRadius="8dp"
         app:strokeColor="@color/colorLightGrey"
@@ -24,14 +27,15 @@
             <ImageView
                 android:id="@+id/postImageView"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="600dp"
                 android:contentDescription="@string/meme_gif"
-                android:maxHeight="400dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/descriptionTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0"
+                android:background="@color/colorDarkGrey"
+                android:clipToOutline="true"
                 tools:srcCompat="@drawable/ic_place_holder" />
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
@@ -78,7 +82,7 @@
                 android:textColor="@color/colorWhite"
                 android:textSize="14sp"
                 app:drawableStartCompat="@drawable/ic_round_person_24"
-                app:layout_constraintBottom_toTopOf="@id/guideline_bottom"
+                app:layout_constraintBottom_toTopOf="@id/dateTextView"
                 app:layout_constraintEnd_toStartOf="@+id/addFav"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toEndOf="@id/guideline_start"
@@ -154,4 +158,4 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-</FrameLayout>
+</androidx.core.widget.NestedScrollView>

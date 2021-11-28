@@ -12,7 +12,7 @@ import ru.meseen.dev.developers_life.data.db.entity.FavFeedEntity
 @Dao
 interface FavFeedDao : BaseDao<FavFeedEntity> {
 
-    @Query("SELECT * FROM FAV_TABLE")
+    @Query("SELECT * FROM FAV_TABLE ORDER BY _id DESC")
     fun loadFav(): PagingSource<Int, FavFeedEntity>
 
     @Transaction

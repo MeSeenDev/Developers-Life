@@ -3,7 +3,9 @@ package ru.meseen.dev.developers_life.ui.base
 import android.content.Intent
 import android.content.Intent.ACTION_SEND
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.DrawableRes
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -30,8 +32,13 @@ class DevLifeVH(
     private val context by lazy { binding.root.context }
 
     override fun bind(model: FeedModel) {
-        binding.postImageView.minimumHeight =
-           model.height.dp /2
+
+        (binding.postImageView.layoutParams as ConstraintLayout.LayoutParams).let { params ->
+            params.height = model.height.dp
+            binding.postImageView.layoutParams = params
+        }
+
+        binding.postImageView.setOnClickListener { Toast.makeText(context, "height${model.height.dp}", Toast.LENGTH_SHORT).show() }
 
     Glide.with(itemView.context).asGif()
             .load(model.gifURL)

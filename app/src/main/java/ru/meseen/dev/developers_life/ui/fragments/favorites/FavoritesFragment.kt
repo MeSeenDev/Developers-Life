@@ -34,7 +34,8 @@ class FavoritesFragment : BaseFragment() {
         return vb.root
     }
 
-    @ExperimentalPagingApi
+
+    @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = FavoriteAdapter(viewModel::deleteFromFav)
         vb.favRecycle.adapter = adapter

@@ -22,4 +22,5 @@ open class BaseFragment : Fragment() {
             mainActivity.titleText.text = value
         }
 
+
 }
