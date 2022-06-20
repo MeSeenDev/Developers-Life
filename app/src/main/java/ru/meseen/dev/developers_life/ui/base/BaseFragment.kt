@@ -1,5 +1,9 @@
 package ru.meseen.dev.developers_life.ui.base
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import ru.meseen.dev.developers_life.ui.activities.MainActivity
 
@@ -22,5 +26,19 @@ open class BaseFragment : Fragment() {
             mainActivity.titleText.text = value
         }
 
+   /*
+   * Надо ли отображать стрелку "назад" в тулбаре
+   */
+    open val isNavigateBackVisible: Boolean = false
+
+    override fun onResume() {
+        super.onResume()
+        mainActivity.isBottomNavigationViewVisible = this@BaseFragment.isBottomNavigationViewVisible
+        mainActivity.isNavigateBackVisible = isNavigateBackVisible
+    }
+
+    fun setOnNavBackListener(listener: View.OnClickListener){
+        mainActivity.onNavBackListener = listener
+    }
 
 }

@@ -20,7 +20,7 @@
             style="@style/Theme.TinkoffLab_0.Main.ToolBarText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/developers_life" />
+            tools:text="@string/developers_life" />
 
     </androidx.appcompat.widget.Toolbar>
 

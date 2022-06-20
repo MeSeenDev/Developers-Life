@@ -1,5 +1,6 @@
 package ru.meseen.dev.developers_life.ui.base
 
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -22,6 +23,5 @@ open class BaseActivity : AppCompatActivity() {
             navGraph = navController.graph,
             fallbackOnNavigateUpListener = ::onSupportNavigateUp
         )
-
     }
 }

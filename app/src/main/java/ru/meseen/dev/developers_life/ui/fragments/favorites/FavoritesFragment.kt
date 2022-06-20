@@ -24,6 +24,14 @@ class FavoritesFragment : BaseFragment() {
 
     private val viewModel: FavoritesViewModel by viewModels()
 
+    override val isNavigateBackVisible: Boolean
+        get() = true
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        isBottomNavigationViewVisible = false
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

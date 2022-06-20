@@ -45,15 +45,16 @@ class LatestFragment : BaseFragment() {
 
     @OptIn(ExperimentalPagingApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        isBottomNavigationViewVisible = true
         adapterConfig()
         lifecycleScope.launchWhenCreated {
-            viewModel.networkStatus.observe(viewLifecycleOwner, { isConnected ->
+            viewModel.networkStatus.observe(viewLifecycleOwner) { isConnected ->
                 if (isConnected) {
                     hideBanner()
                 } else {
                     showBanner("Lost Internet connection")
                 }
-            })
+            }
         }
         vb.viewPager2.registerOnPageChangeCallback(pageListener)
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="ru.meseen.dev.developers_life">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -12,8 +13,11 @@
         android:label="@string/developers_life"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.TinkoffLab_0"
-        android:fullBackupContent="@xml/backup_descriptor">
+        android:fullBackupContent="@xml/backup_descriptor"
+        tools:targetApi="n">
         <activity android:name="ru.meseen.dev.developers_life.ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
